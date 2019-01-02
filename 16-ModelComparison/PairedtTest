@@ -1,0 +1,59 @@
+# general purpose libraries libraries for tools
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# models
+from sklearn import linear_model
+from sklearn import naive_bayes
+from sklearn import neighbors
+from sklearn.neighbors.nearest_centroid import NearestCentroid
+from sklearn import tree
+from sklearn.ensemble import RandomForestClassifier
+
+# stat libraries
+from scipy import stats
+
+# Libraries for the evaluation
+from sklearn import model_selection
+from sklearn.metrics import precision_score
+from sklearn.metrics import recall_score
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import precision_recall_curve
+from sklearn.metrics import average_precision_score
+from sklearn.metrics import precision_score
+from sklearn.metrics import recall_score
+from sklearn.metrics import roc_curve
+from sklearn.metrics import roc_auc_score
+
+# loans = pd.read_csv('LoansData01.csv')
+loans = pd.read_csv('LoansNumerical.csv')
+
+target = 'safe_loans'
+features = loans.columns[loans.columns!=target]
+
+x = loans[features]
+y = loans[target]
+
+tf = model_selection.KFold(n_splits=10)
+
+knn_scores = []
+rf_scores = []
+
+tf.split(loans)
+
+tf.split(loans)
+for train, test in tf.split(loans):
+    l = loans.loc[train]
+    train_x = l[features]
+    train_y = l[target]
+
+    knn = neighbors.KNeighborsClassifier(20, weights='distance')
+    knn = knn.fit(train_x, train_y)
+
+
+    print(train_x.shape)
+
+
+
+
